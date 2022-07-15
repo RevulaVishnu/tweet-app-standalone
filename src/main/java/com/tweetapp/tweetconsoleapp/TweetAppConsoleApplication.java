@@ -3,7 +3,6 @@ package com.tweetapp.tweetconsoleapp;
 import com.tweetapp.tweetconsoleapp.controller.AppHomeController;
 import com.tweetapp.tweetconsoleapp.controller.TweetController;
 import com.tweetapp.tweetconsoleapp.controller.UserController;
-import com.tweetapp.tweetconsoleapp.util.CommandLineInputs;
 import com.tweetapp.tweetconsoleapp.util.ReadCSVUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

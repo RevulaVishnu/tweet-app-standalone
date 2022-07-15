@@ -17,15 +17,15 @@ The core modules of tweet app are:
 ###PRESENTATION:
 1. Application shall be a java console application
 2. Application must be menu driven
-3. Application will comprise of two menu
-    a. Introduction menu for Non-logged in user
+3. Application will comprise of two menu\
+    a. Introduction menu for Non-logged in user\
     `i. Register`
     `ii. Login`
-    `iii. Forgot Password`
-    b. Menu for logged in user
+    `iii. Forgot Password`\
+    b. Menu for logged in user\
     `i. Post a tweet`
     `ii. View my tweets`
-    `iii. View all tweets`
+    `iii. View all tweets`\
     `iv. View All Users`
     `v. Reset Password`
     `vi. Logout`
@@ -62,7 +62,7 @@ Enter Gender(Required) [male/female]: male
 Enter Date of Birth(Optional) [dd-MM-yyyy]: 14-09-1999
 Enter Email(Required): vishnu@gmail.com
 Enter Password(Required): vishnu
-Enter Mobile Number(Required): 9440833421
+Enter Mobile Number(Required): 9876543210
 
 	User Registration Successful.
 
@@ -93,7 +93,8 @@ ________________________________________________________________________________
 4) View Tweets of users
 5) Change Password
 6) Logout
-   Enter Your Choice: _1_
+
+Enter Your Choice: 1
 
 ________________________________________________________________________________________
                                     Post a Tweet
@@ -109,7 +110,8 @@ ________________________________________________________________________________
 4) View Tweets of users
 5) Change Password
 6) Logout
-   Enter Your Choice: 2
+   
+Enter Your Choice: 2
 
 ________________________________________________________________________________________
 				Your Tweets are
@@ -130,7 +132,8 @@ ________________________________________________________________________________
 4) View Tweets of users
 5) Change Password
 6) Logout
-   Enter Your Choice: 3
+
+Enter Your Choice: 3
 
 ________________________________________________________________________________________
 				Tweets posted by all the users
@@ -160,7 +163,8 @@ ________________________________________________________________________________
 4) View Tweets of users
 5) Change Password
 6) Logout
-   Enter Your Choice: 4
+
+Enter Your Choice: 4
 
 ________________________________________________________________________________________
 				Select user to view tweets posted by them
@@ -168,8 +172,8 @@ ________________________________________________________________________________
 1) vishnu0@gmail.com
 2) vishnu1@gmail.com
 3) vishnu@gmail.com
-    Enter Your Choice: 3
 
+Enter Your Choice: 3
 
 Tweets of vishnu@gmail.com
 
@@ -187,7 +191,8 @@ ________________________________________________________________________________
 4) View Tweets of users
 5) Change Password
 6) Logout
-   Enter Your Choice: 5
+
+Enter Your Choice: 5
 
 ________________________________________________________________________________________
 				Reset Password Form:
@@ -207,7 +212,8 @@ ________________________________________________________________________________
 4) View Tweets of users
 5) Change Password
 6) Logout
-   Enter Your Choice: 6
+
+Enter Your Choice: 6
 	                   
         Logged out successfully.
 
@@ -218,6 +224,7 @@ ________________________________________________________________________________
 2) Login
 3) Forgot Password
 4) Exit
+
 Enter Your Choice: 3
 
 ________________________________________________________________________________________
