@@ -22,6 +22,7 @@ public class UserDetails {
     private String firstName;
     private String lastName;
     private String gender;
-    private String dob;
+    private Date dob;
     private String mobileNumber;
+    private boolean online;
 }
