@@ -2,9 +2,11 @@ package com.tweetapp.tweetconsoleapp.service;
 
 import com.tweetapp.tweetconsoleapp.model.UserDetails;
 import com.tweetapp.tweetconsoleapp.repository.UserRepository;
+import com.tweetapp.tweetconsoleapp.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,9 +30,22 @@ public class UserService {
         }
     }
 
+    public UserDetails verifyUserIdentity(String email, String dob) throws ParseException {
+        Optional<UserDetails> userOptional = userRepository.findById(email);
+        if (userOptional.isPresent()) {
+            UserDetails userDetails = userOptional.get();
+            if (DateUtil.parse(dob).equals(userDetails.getDob())) {
+                return userDetails;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
     public void registerUser(UserDetails userDetails) {
         userRepository.save(userDetails);
-
     }
 
     public boolean emailAlreadyExist(String email) {
@@ -56,8 +71,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public boolean updateLoginStatus(UserDetails user, boolean status) {
+    public void updateLoginStatus(UserDetails user, boolean status) {
         user.setOnline(status);
-        return userRepository.save(user).isOnline();
+        userRepository.save(user);
     }
 }

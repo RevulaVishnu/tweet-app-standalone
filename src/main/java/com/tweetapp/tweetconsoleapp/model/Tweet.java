@@ -1,7 +1,6 @@
 package com.tweetapp.tweetconsoleapp.model;
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
@@ -17,7 +16,7 @@ import java.sql.Timestamp;
 public class Tweet {
     @Id
     private String email;
-    private String tweet;
+    private String tweetPosted;
     private String tweetedBy;
     @CreationTimestamp
     private Timestamp createdAt;
