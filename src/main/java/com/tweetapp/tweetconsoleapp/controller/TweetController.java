@@ -4,20 +4,16 @@ import com.tweetapp.tweetconsoleapp.model.Tweet;
 import com.tweetapp.tweetconsoleapp.model.UserDetails;
 import com.tweetapp.tweetconsoleapp.service.TweetService;
 import com.tweetapp.tweetconsoleapp.service.UserService;
-import com.tweetapp.tweetconsoleapp.util.CmdLineInputs;
+import com.tweetapp.tweetconsoleapp.util.CommandLineInputs;
 import com.tweetapp.tweetconsoleapp.util.OnScreenMessages;
 import com.tweetapp.tweetconsoleapp.util.TweetValidator;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class TweetController {
@@ -31,7 +27,7 @@ public class TweetController {
     public void postTweet(UserDetails user) throws IOException {
         OnScreenMessages.showDisplayMessage("Post a Tweet");
         System.out.println("\t\tEnter Your Tweet(Max 300 chars): [PRESS ENTER TO POST YOUR TWEET]");
-        String tweetInput = CmdLineInputs.readInput();
+        String tweetInput = CommandLineInputs.readInput();
 
         List<String> validationErrors = TweetValidator.validate(tweetInput);
         if (validationErrors.isEmpty()) {
@@ -71,7 +67,7 @@ public class TweetController {
         }
     }
 
-    public void viewTweetsOfUsers(UserDetails user) throws NumberFormatException, IOException {
+    public void viewTweetsOfUsers() throws NumberFormatException, IOException {
         OnScreenMessages.showDisplayMessage("Tweets Of User");
         List<UserDetails> allUsers = userService.getAllUsers();
         int ch = 1;
@@ -82,7 +78,7 @@ public class TweetController {
         System.out.print("Enter Your Choice: ");
         int userChoice = 0;
         try {
-            userChoice = Integer.parseInt(CmdLineInputs.readInput());
+            userChoice = Integer.parseInt(CommandLineInputs.readInput());
         } catch (NumberFormatException ex) {
             OnScreenMessages.showMessage("ERROR! Please Enter Correct Choice");
         }

@@ -28,8 +28,9 @@ public class UserService {
         }
     }
 
-    public UserDetails registerUser(UserDetails userDetails) {
-        return  userRepository.save(userDetails);
+    public void registerUser(UserDetails userDetails) {
+        userRepository.save(userDetails);
+
     }
 
     public boolean emailAlreadyExist(String email) {

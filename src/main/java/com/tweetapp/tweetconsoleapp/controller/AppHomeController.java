@@ -1,6 +1,6 @@
 package com.tweetapp.tweetconsoleapp.controller;
 
-import com.tweetapp.tweetconsoleapp.util.CmdLineInputs;
+import com.tweetapp.tweetconsoleapp.util.CommandLineInputs;
 import com.tweetapp.tweetconsoleapp.util.OnScreenMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ public class AppHomeController {
         OnScreenMessages.showDisplayMessage("Welcome to Tweet App");
         OnScreenMessages.appHomeMenu();
         try {
-            choice = Integer.parseInt(CmdLineInputs.readInput());
+            choice = Integer.parseInt(CommandLineInputs.readInput());
             switch (choice) {
                 case 1:
                     System.out.println();
