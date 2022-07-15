@@ -21,8 +21,8 @@ public class OnScreenMessages {
     public static void appHomeMenu() {
         System.out.println("1) Register");
         System.out.println("2) Login");
-        System.out.println("4) Forgot Password");
-        System.out.println("3) Exit");
+        System.out.println("3) Forgot Password");
+        System.out.println("4) Exit");
         System.out.println();
         System.out.print("Enter Your Choice: ");
     }

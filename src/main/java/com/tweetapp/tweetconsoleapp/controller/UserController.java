@@ -63,7 +63,7 @@ public class UserController {
                     UserDetails user = new UserDetails(email, password, firstName, lastName, gender, DateUtil.parse(dob), mobileNumber,false);
                     userService.registerUser(user);
                     OnScreenMessages.showMessage("User Registration Successful.");
-                    loginUser();
+                    appHomeController.launchApp();
 
                 } catch (ParseException e) {
                     System.out.println("Invalid Date Format");
@@ -164,14 +164,13 @@ public class UserController {
         OnScreenMessages.mainHeader("Reset Password Form:");
         System.out.print("\t\tEnter your Email to Reset Password: ");
         String email = CommandLineInputs.readInput();
-        System.out.print("\t\tEnter Date of Birth(Optional) [dd-MM-yyyy]: ");
-        String dob = CommandLineInputs.readInput();
 
         if (userService.emailAlreadyExist(email)) {
-            System.out.print("\t\tEnter Old Password: ");
+            System.out.print("\t\tEnter Date of Birth(Optional) [dd-MM-yyyy]: ");
+            String dob = CommandLineInputs.readInput();
             UserDetails userLoggedIn = userService.verifyUserIdentity(email, dob);
             if (Objects.isNull(userLoggedIn)) {
-                OnScreenMessages.showMessage("Invalid Details");
+                OnScreenMessages.showMessage("Invalid Details. Try again from beginning");
                 appHomeController.launchApp();
             }
             System.out.print("\t\tEnter New Password: ");
@@ -193,7 +192,7 @@ public class UserController {
             }
         }
         else {
-            OnScreenMessages.showMessage("Email doesn't exist in Database.");
+            OnScreenMessages.showMessage("User doesn't exist. Please register");
         }
 
     }

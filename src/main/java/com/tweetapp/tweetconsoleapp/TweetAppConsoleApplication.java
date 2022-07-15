@@ -31,7 +31,6 @@ public class TweetAppConsoleApplication implements CommandLineRunner {
 	public void run(String... arg0) throws Exception {
 		loadTestData();
 		appHomeController.launchApp();
-		CommandLineInputs.closeBr();
 	}
 
 	private void loadTestData() throws IOException {

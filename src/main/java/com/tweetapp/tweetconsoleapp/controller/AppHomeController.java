@@ -36,7 +36,7 @@ public class AppHomeController {
                     }
                     case 4 -> {
                         System.out.println();
-                        OnScreenMessages.showMessage("Thank You for Using Tweet App.");
+                        exitApp();
                     }
                     default -> throw new IllegalArgumentException();
                 }
@@ -45,5 +45,10 @@ public class AppHomeController {
             }
             i++;
         }
+    }
+    public void exitApp() throws IOException {
+        OnScreenMessages.showMessage("Thank You for Using Tweet App.");
+        CommandLineInputs.closeBr();
+        System.exit(1);
     }
 }
