@@ -10,22 +10,18 @@ import com.tweetapp.tweetconsoleapp.util.TweetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 @Controller
 public class TweetController {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
     @Autowired
     UserService userService;
     @Autowired
     TweetService tweetService;
     
     public void postTweet(UserDetails user) throws IOException {
-        OnScreenMessages.showDisplayMessage("Post a Tweet");
+        OnScreenMessages.mainHeader("Post a Tweet");
         System.out.println("\t\tEnter Your Tweet(Max 300 chars): [PRESS ENTER TO POST YOUR TWEET]");
         String tweetInput = CommandLineInputs.readInput();
 
@@ -39,25 +35,34 @@ public class TweetController {
         }
     }
 
+    public void postTweet(String email, String firstName, String lastName, String tweetInput)  {
+        List<String> validationErrors = TweetValidator.validate(tweetInput);
+        if (validationErrors.isEmpty()) {
+            Tweet tweet = new Tweet(email, tweetInput, firstName+" "+lastName, null );
+            tweetService.postTweet(tweet);
+        }
+    }
+
     public void viewMyTweets(UserDetails user) {
-        OnScreenMessages.showDisplayMessage("Your Tweets");
+        OnScreenMessages.mainHeader("Your Tweets are");
         List<Tweet> myTweets = tweetService.getTweetsByEmail(user.getEmail());
         System.out.println();
         if (myTweets.isEmpty()) {
-            OnScreenMessages.showMessage("No Tweets to show.");
+            OnScreenMessages.showMessage("No Tweets to display");
         } else {
             myTweets.forEach(TweetController::displayTweet);
         }
     }
 
     public static void displayTweet(Tweet tweet) {
-        System.out.println("Tweet -> " + tweet.getTweet());
-        System.out.println("by: " + tweet.getTweetedBy() + "\tat: " + tweet.getCreatedAt());
+        System.out.println("Tweet : " );
+        System.out.println(tweet.getTweetPosted());
+        System.out.println("by: " + tweet.getTweetedBy() + "  at: " + tweet.getCreatedAt());
         System.out.println();
     }
 
     public void viewAllTweets() {
-        OnScreenMessages.showDisplayMessage("All Tweets");
+        OnScreenMessages.mainHeader("Tweets posted by all the users");
         List<Tweet> allTweets = tweetService.getAllTweets();
         System.out.println();
         if (allTweets.isEmpty()) {
@@ -68,7 +73,7 @@ public class TweetController {
     }
 
     public void viewTweetsOfUsers() throws NumberFormatException, IOException {
-        OnScreenMessages.showDisplayMessage("Tweets Of User");
+        OnScreenMessages.mainHeader("Select user to view tweets posted by them");
         List<UserDetails> allUsers = userService.getAllUsers();
         int ch = 1;
         for (UserDetails u : allUsers) {
@@ -87,7 +92,7 @@ public class TweetController {
             List<Tweet> userTweets = tweetService.getTweetsByEmail(allUsers.get(userChoice).getEmail());
             System.out.println();
             if (userTweets.isEmpty()) {
-                OnScreenMessages.showMessage("No Tweets to show.");
+                OnScreenMessages.showMessage("No Tweets to display.");
             } else {
                 OnScreenMessages.showMessage("Tweets of " + allUsers.get(userChoice).getEmail());
                 userTweets.forEach(TweetController::displayTweet);

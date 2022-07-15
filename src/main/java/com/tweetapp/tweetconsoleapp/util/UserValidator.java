@@ -1,13 +1,7 @@
 package com.tweetapp.tweetconsoleapp.util;
 
-import com.tweetapp.tweetconsoleapp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,6 +74,11 @@ public class UserValidator {
         }
         if (password.length() > 30) {
             message = "Password cannot be more than 30 characters";
+            errors.add(message);
+        }
+        // Mobile Number
+        if (mobileNumber.equals("")) {
+            message = "Mobile cannot be empty";
             errors.add(message);
         }
 
