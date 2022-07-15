@@ -1,7 +1,5 @@
 package com.tweetapp.tweetconsoleapp.util;
 
-import com.tweetapp.tweetconsoleapp.controller.TweetController;
-
 import java.util.ArrayList;
 import java.util.List;
 
