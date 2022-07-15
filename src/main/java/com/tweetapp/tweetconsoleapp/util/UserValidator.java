@@ -7,18 +7,20 @@ import org.springframework.stereotype.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component
 public class UserValidator {
 
-    @Autowired
-    UserService userService ;
 
-    public List<String> validate(String firstName, String lastName, String gender, String dob, String email,
-                                 String password, String confirm_password) {
+    private UserValidator(){
+        throw new IllegalStateException("Utility class");
+    }
+
+    public static List<String> validate(String firstName, String lastName, String gender, String dob, String email,
+                                        String password, String mobileNumber) {
         List<String> errors = new ArrayList<>();
         String message;
 
@@ -47,11 +49,8 @@ public class UserValidator {
             message = "Gender can be either [male/female] only";
             errors.add(message);
         }
-
-        // Date of Birth
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            format.parse(dob);
+            DateUtil.parse(dob);
         } catch (ParseException e) {
             message = "Date Format [" + dob + "] is Invalid. Example Format: [26-09-1980]";
             errors.add(message);
@@ -69,10 +68,6 @@ public class UserValidator {
             message = "Email Format [" + email + "] is Invalid. Example Format: [name@example.com]";
             errors.add(message);
         }
-        if (userService.emailAlreadyExist(email)) {
-            message = "Email " + email + " already exist into Databse";
-            errors.add(message);
-        }
         if (email.length() > 50) {
             message = "Email cannot be more than 50 characters";
             errors.add(message);
@@ -88,24 +83,10 @@ public class UserValidator {
             errors.add(message);
         }
 
-        // Confirm Password
-        if (confirm_password.equals("")) {
-            message = "Confirm Password cannot be empty";
-            errors.add(message);
-        }
-        if (confirm_password.length() > 30) {
-            message = "Confirm Password cannot be more than 30 characters";
-            errors.add(message);
-        }
-        if (!password.equals(confirm_password)) {
-            message = "Password and Confirm Password doesn't match";
-            errors.add(message);
-        }
-
         return errors;
     }
 
-    public List<String> validate(String password, String confirmPassword) {
+    public static List<String> validate(String password, String confirmPassword) {
         List<String> errors = new ArrayList<>();
         String message;
 

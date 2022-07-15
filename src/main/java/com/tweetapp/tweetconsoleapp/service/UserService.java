@@ -3,7 +3,6 @@ package com.tweetapp.tweetconsoleapp.service;
 import com.tweetapp.tweetconsoleapp.model.UserDetails;
 import com.tweetapp.tweetconsoleapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,4 +55,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public boolean updateLoginStatus(UserDetails user, boolean status) {
+        user.setOnline(status);
+        return userRepository.save(user).isOnline();
+    }
 }
